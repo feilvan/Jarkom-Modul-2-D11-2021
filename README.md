@@ -5,6 +5,7 @@ Anggota kelompok:
 - 05111940000095 - Fuad Elhasan Irfani
 - 05111940000203 - Fidhia Ainun Khofifah
 ---
+Laporan Resmi Modul 2
 1. Buat peta seperti gambar yang tertera pada soal modul 2, EniesLobby akan dijadikan sebagai DNS Master, Water7 akan dijadikan DNS Slave, dan Skypie akan digunakan sebagai Web Server. Terdapat 2 Client yaitu Loguetown, dan Alabasta. Semua node terhubung pada router Foosha, sehingga dapat mengakses internet.
     - Hasil topologi yang kami buat seperti berikut
     ![image](https://user-images.githubusercontent.com/73324192/139509179-41fe23ac-0be5-4713-979e-a6f8b2a2e755.png)
