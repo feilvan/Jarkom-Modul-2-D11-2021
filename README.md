@@ -108,6 +108,7 @@ Anggota kelompok:
     ![image](https://user-images.githubusercontent.com/73324192/139514681-35793dca-bafd-4992-9966-ce6f9211d02f.png)
 
 7.  Buatkan subdomain melalui Water7 dengan nama ```general.mecha.franky.yyy.com``` dengan alias ```www.general.mecha.franky.yyy.com``` yang mengarah ke Skypie
+
     a. Membuat subdomain
     - Edit /etc/bind/sunnygo/mecha.franky.d11.com. Tambahkan konfigurasi berikut
     ![image](https://user-images.githubusercontent.com/73324192/139514860-a13376bb-344a-449e-85f2-07f3388a016d.png)
