@@ -49,7 +49,7 @@ Laporan Resmi Modul 2
     - Untuk test, bisa PING ```www.super.franky.d11.com``` di LogueTown atau dapat memanggil ```host -t CNAME www.super.franky.d11.com```
     ![image](https://user-images.githubusercontent.com/73324192/139510623-a9293fb2-1e95-47b2-9bc5-2fd26018b2a8.png)
 
-4.  Buat reverse subdomain untuk domain utama
+4.  Buat reverse domain untuk domain utama
     
     a. Konfigurasi
     - Edit file /etc/bind/named.conf.local pada EniesLobby
