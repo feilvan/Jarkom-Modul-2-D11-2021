@@ -117,3 +117,8 @@ Anggota kelompok:
     b. Testing
     - Coba ping ```general.mecha.franky.d11.com``` dan host -t CNAME ```www.general.mecha.franky.d11.com```
     ![image](https://user-images.githubusercontent.com/73324192/139514903-186f0a4c-a054-4d78-bca4-4fcb29fe6fc6.png)
+
+---
+## Kendala
+Kami tidak bisa mengerjakan soal web server. Saat mengikuti modul kami menemui error ini dan kami masih belum bisa mengatasinya.
+![vlcsnap-2021-10-30-08h14m01s639 (2)](https://user-images.githubusercontent.com/73324192/139515153-bc1f44bf-143e-4c2c-a5d0-3701f67676c7.png)
