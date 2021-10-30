@@ -153,6 +153,6 @@ Laporan Resmi Modul 2
 
 ---
 ## Kendala
-Ada kendala waktu mengerjakan soal web server. Saat mengikuti modul kami menemui error ini. Tapi sudah teratasi dengan restart apache2.
+Ada kendala waktu mengerjakan soal web server. Saat mengikuti modul kami menemui error ini.
 
 ![vlcsnap-2021-10-30-08h14m01s639 (2)](https://user-images.githubusercontent.com/73324192/139515153-bc1f44bf-143e-4c2c-a5d0-3701f67676c7.png)
