@@ -47,3 +47,72 @@ Anggota kelompok:
     - Restart bind9
     - Untuk test, bisa PING ```www.super.franky.d11.com``` di LogueTown atau dapat memanggil ```host -t CNAME www.super.franky.d11.com```
     ![image](https://user-images.githubusercontent.com/73324192/139510623-a9293fb2-1e95-47b2-9bc5-2fd26018b2a8.png)
+
+4.  Buat reverse subdomain untuk domain utama
+    
+    a. Konfigurasi
+    - Edit file /etc/bind/named.conf.local pada EniesLobby
+    ![image](https://user-images.githubusercontent.com/73324192/139513874-c653b82a-dafd-4d5b-adaa-4c3c8410bce4.png)
+    - Copykan file db.local pada path /etc/bind ke dalam folder kaizoku dan ubah namanya menjadi 2.40.10.in-addr.arpa
+    - Edit file 2.40.10.in-addr.arpa menjadi seperti gambar di bawah ini
+    ![image](https://user-images.githubusercontent.com/73324192/139513899-80ce7265-d921-44cd-9a64-f501c1fb3ebc.png)
+    - Restart service bind
+    
+    b. Testing
+    - Pada Loguetown, edit nameserver pada resolv.conf dengan nameserver dari Foosha ```192.168.122.1```
+    - Update package list dengan ```apt-get update``` lalu install dnsutils dengan ```apt-get install dnsutils```
+    ![image](https://user-images.githubusercontent.com/73324192/139514065-c6b04ee3-35a8-4899-a33a-956355a4dc02.png)
+    - Kembalikan nameserver ke EniesLobby ```192.197.2.2``` lalu cek reverse domainnya
+    ![unnamed2](https://user-images.githubusercontent.com/73324192/139514161-d0d2b25f-b787-4088-8d1b-5e35d4288501.png)
+
+5.  Buat Water7 sebagai DNS Slave untuk domain utama
+    
+    a. Konfigurasi pada server EniesLobby
+    - Edit file /etc/bind/named.conf.local dan sesuaikan seperti berikut
+    ![image](https://user-images.githubusercontent.com/73324192/139514225-9384307a-cc79-46ea-beec-6f4f6e21a5c9.png)
+    - Restart sevice bind
+    
+    b. Konfigurasi pada server Water7
+    - Update package list dengan ```apt-get update``` lalu install bind9 dengan ```apt-get install bind9 -y```
+    - Kemudian buka file /etc/bind/named.conf.local pada Water7 dan tambahkan syntax berikut
+    ![image](https://user-images.githubusercontent.com/73324192/139514283-95ccf575-78b0-4eb9-84b9-667a5951ba90.png)
+    - Restart sevice bind
+    
+    c. Testing
+    - Pada server EniesLobby, matikan service bind9 dengan ```service bind9 stop```
+    - Pada client Loguetown pastikan pengaturan nameserver mengarah ke IP EniesLobby dan IP Water7
+    - Lakukan PING ke franky.d11.com pada client Loguetown.PING berhasil dilakukan maka dapat disimpulkan bahwa konfigurasi DNS slave telah berhasil.
+    ![image](https://user-images.githubusercontent.com/73324192/139514359-a2c73363-81f7-4650-b069-81a65f4140c2.png)
+
+6.  Terdapat subdomain ```mecha.franky.d11.com``` dengan alias ```www.mecha.franky.d11.com``` yang didelegasikan dari EniesLobby ke Water7 dengan IP menuju ke Skypie dalam folder sunnygo
+    
+    a. Konfigurasi pada EniesLobby
+    - Buka /etc/bind/kaizoku/franky.d11.com dan edit seperti dibawah ini (record A & NS)
+    ![image](https://user-images.githubusercontent.com/73324192/139514387-03bb85f8-64cb-40d3-9ad5-28f082d3d3ee.png)
+    - Edit ```/etc/bind/named.conf.options```. Comment ```dnssec-validation``` dan tambahkan ```allow-query{any;};```
+    ![image](https://user-images.githubusercontent.com/73324192/139514458-e4591d2f-4f87-43f0-a673-5f40f9515498.png)
+    - Edit /etc/bind/named.conf.local menjadi seperti dibawah (pada allow-transfer)
+    ![image](https://user-images.githubusercontent.com/73324192/139514501-e3482d1e-08db-443f-9b9a-04e2c1536a72.png)
+    
+    b. Konfigurasi pada Water7
+    - Edit ```/etc/bind/named.conf.options```. Comment ```dnssec-validation``` dan tambahkan ```allow-query{any;};```
+    ![unnamed (1)2](https://user-images.githubusercontent.com/73324192/139514553-94ff9c48-ac4d-4a43-99c8-95a99b10104c.png)
+    - Edit file /etc/bind/named.conf.local menjadi seperti di bawah ini
+    ![image](https://user-images.githubusercontent.com/73324192/139514582-d47a0242-f5f7-434f-b999-12a34661d9be.png)
+    - Buat direktori ```/etc/bind/sunnygo```. Copy db.local ke direktori dan edit namanya menjadi mecha.franky.d11.com. Kemudian edit menjadi seperti di bawah ini
+    ![unnamed (2)](https://user-images.githubusercontent.com/73324192/139514652-c392c45f-cfc8-45bd-b0ea-7eb2e652a838.png)
+    - Restart service bind
+    
+    c. Testing
+    - Lakukan ping ke mecha.franky.d11.com dari Loguetown
+    ![image](https://user-images.githubusercontent.com/73324192/139514681-35793dca-bafd-4992-9966-ce6f9211d02f.png)
+
+7.  Buatkan subdomain melalui Water7 dengan nama ```general.mecha.franky.yyy.com``` dengan alias ```www.general.mecha.franky.yyy.com``` yang mengarah ke Skypie
+    a. Membuat subdomain
+    - Edit /etc/bind/sunnygo/mecha.franky.d11.com. Tambahkan konfigurasi berikut
+    ![image](https://user-images.githubusercontent.com/73324192/139514860-a13376bb-344a-449e-85f2-07f3388a016d.png)
+    - Restart service bind9
+    
+    b. Testing
+    - Coba ping ```general.mecha.franky.d11.com``` dan host -t CNAME ```www.general.mecha.franky.d11.com```
+    ![image](https://user-images.githubusercontent.com/73324192/139514903-186f0a4c-a054-4d78-bca4-4fcb29fe6fc6.png)
