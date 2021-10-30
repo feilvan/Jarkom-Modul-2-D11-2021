@@ -119,7 +119,39 @@ Laporan Resmi Modul 2
     - Coba ping ```general.mecha.franky.d11.com``` dan host -t CNAME ```www.general.mecha.franky.d11.com```
     ![image](https://user-images.githubusercontent.com/73324192/139514903-186f0a4c-a054-4d78-bca4-4fcb29fe6fc6.png)
 
+8.  Melakukan konfigurasi webserver ```www.franky.yyy.com``` dengan DocumentRoot pada ```/var/www/franky.yyy.com```
+    
+    a. Konfigurasi
+    - Ikuti modul web server sampai berhasil ```lynx http://[IP Water7]:8080```
+    - Pindah ke ```/etc/apache2/sites-available```. Copy file 000-default.conf menjadi file franky.d11.com.conf. Buka file tersebut dan dikonfigurasi seperti ini
+    ![image](https://user-images.githubusercontent.com/73324192/139521945-968860a4-a16b-4eb8-8b4a-4a1448787d06.png)
+    - Aktifkan konfigurasi dengan ```a2ensite franky.d11.com```
+    - Restart apache dengan ```service apache2 restart```
+    - Pindah ke ```/var/www```, buat direktori ```franky.d11.com```. Buat ```index.php```.
+    ![image](https://user-images.githubusercontent.com/73324192/139522035-55640332-174d-4621-a2f0-cd2a64dbf208.png)
+    
+    b. Testing
+    - Pada Loguetown, jalankan ```lynx http://www.franky.d11.com/index.php```
+    ![image](https://user-images.githubusercontent.com/73324192/139522116-7ac5222a-b485-461e-94b6-cc3884dbc261.png)
+
+9.  URL ```www.franky.yyy.com/index.php/home``` dapat menjadi ```www.franky.yyy.com/home```
+
+    a. Konfigurasi
+    - Jalankan ```a2enmod rewrite``` untuk mengaktifkan module rewrite
+    - Restart apache
+    - Pindah ke ```/var/www/franky.d11.com```. Buat file .htaccess dengan isi file:
+    ![image](https://user-images.githubusercontent.com/73324192/139522192-ea64169d-7e95-43d9-933e-23c81af741d7.png)
+    - Pindah ke ```/etc/apache2/sites-available```. Buka file ```franky.d11.com.conf``` dan tambahkan
+    ![image](https://user-images.githubusercontent.com/73324192/139522248-dd9c77f9-3f53-414c-a331-3724a1ed0e0d.png)
+    - Restart apache
+    
+    b. Testing
+    - Pada Loguetown, jalankan ```lynx http://www.franky.d11.com/home```
+    ![image](https://user-images.githubusercontent.com/73324192/139522276-1626700b-6b6d-491b-8ce8-887449cebfe4.png)
+    ![image](https://user-images.githubusercontent.com/73324192/139522288-6f3f8f70-9bff-41bb-a7be-6b08fff47b67.png)
+
 ---
 ## Kendala
-Kami tidak bisa mengerjakan soal web server. Saat mengikuti modul kami menemui error ini dan kami masih belum bisa mengatasinya.
+Ada kendala waktu mengerjakan soal web server. Saat mengikuti modul kami menemui error ini. Tapi sudah teratasi dengan restart apache2.
+
 ![vlcsnap-2021-10-30-08h14m01s639 (2)](https://user-images.githubusercontent.com/73324192/139515153-bc1f44bf-143e-4c2c-a5d0-3701f67676c7.png)
